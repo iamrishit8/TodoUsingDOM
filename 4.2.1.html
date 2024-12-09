@@ -1,0 +1,52 @@
+<html> 
+    <script>
+        let globalID= 1 ; 
+
+        function markAsDone(taskID){ 
+            const task = document.getElementById(taskID) ; 
+            task.children[2].innerHTML = "Done!" ; 
+        }
+
+        function creatingHouse(title,description,id){ 
+
+            const house = document.createElement("div") ;
+
+            const room1 = document.createElement("div"); 
+            room1.innerHTML = title ; 
+            
+
+            const room2 = document.createElement("div"); 
+            room2.innerHTML = description; 
+
+            const room3 = document.createElement("button"); 
+            room3.innerHTML = "Mark as Done"  ; 
+            house.setAttribute("onclick", `markAsDone(${id})`)
+            
+            house.appendChild(room1) ; 
+            house.appendChild(room2) ;
+            house.appendChild(room3) ;
+
+            house.setAttribute("id", id);
+            return house ;
+        } 
+
+        function addTodo(){ 
+            const title = document.getElementById("title").value; 
+            const description = document.getElementById("description").value ;
+            const land = document.getElementById("todos") ; 
+
+            land.appendChild(creatingHouse(title,description,globalID++)) ; 
+
+
+        }
+
+    </script> 
+
+    <body> 
+    <input id ="title" type="text" placeholder="Title"><br><br> 
+    <input id ="description" type="text" placeholder="Description"><br><br>
+    <button onclick="addTodo()">Add Todo</button><br><br>
+    <div id="todos"></div>
+</body> 
+</html>
+
